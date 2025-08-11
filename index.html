@@ -16,15 +16,27 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+        }
+
+        .nav-dropdown-toggle {
+            display: none;
         }
 
         .nav-bar {
@@ -607,22 +619,303 @@
             margin-top: 4px;
         }
 
+        .qa-page {
+            padding: 30px;
+        }
+
+        .qa-type-selector {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .qa-type-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .qa-type-btn {
+            padding: 15px 30px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+
+        .qa-type-btn.active {
+            background: #43cea2;
+            color: white;
+            border-color: #43cea2;
+        }
+
+        .qa-type-btn:hover {
+            border-color: #43cea2;
+            color: #43cea2;
+        }
+
+        .qa-type-btn.active:hover {
+            background: #2ca889;
+            border-color: #2ca889;
+            color: white;
+        }
+
+        .qa-section {
+            display: none;
+        }
+
+        .qa-section.active {
+            display: block;
+        }
+
+        .qa-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .qa-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .qa-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .qa-question:hover {
+            background: #f8fafc;
+            color: #43cea2;
+        }
+
+        .qa-toggle-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            color: #64748b;
+        }
+
+        .qa-item.expanded .qa-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .qa-answer {
+            padding: 0 25px 25px 25px;
+            color: #64748b;
+            line-height: 1.8;
+            border-top: 1px solid #f1f5f9;
+            display: none;
+        }
+
+        .qa-answer p {
+            margin: 0 0 1.2em 0;
+        }
+
+        .qa-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .qa-item.expanded .qa-answer {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .copyright {
+            background: transparent;
+            border: none;
+            padding: 20px 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .copyright p {
+            margin-bottom: 10px;
+        }
+
+        .copyright p:last-child {
+            margin-bottom: 0;
+        }
+
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .nav-bar {
+                position: relative;
+            }
+
+            .nav-tabs {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-top: none;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                flex-direction: column;
+            }
+
+            .nav-tabs.show {
+                display: flex;
+            }
+
+            .nav-dropdown-toggle {
+                display: block;
+                width: 100%;
+                padding: 15px 20px;
+                background: white;
+                border: none;
+                border-bottom: 1px solid #e2e8f0;
+                font-size: 16px;
+                font-weight: 600;
+                color: #43cea2;
+                text-align: left;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .nav-dropdown-toggle::after {
+                content: '▼';
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-dropdown-toggle.active::after {
+                transform: translateY(-50%) rotate(180deg);
+            }
+
+            .nav-tab {
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .nav-tab:last-child {
+                border-bottom: none;
+            }
+
+            .nav-tab button {
+                width: 100%;
+                padding: 15px 20px;
+                text-align: left;
+                border-bottom: none;
+            }
+
             .header h1 {
                 font-size: 2rem;
             }
 
+            /* 移动端表格优化 */
             .nutrition-table {
-                font-size: 14px;
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nutrition-table thead,
+            .nutrition-table tbody,
+            .nutrition-table tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            .nutrition-table thead {
+                width: calc(100% - 1em);
             }
 
             .nutrition-table th,
             .nutrition-table td {
-                padding: 12px 8px;
+                padding: 8px 4px;
+                font-size: 11px;
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .category-cell {
+                min-width: 60px;
+                width: 15%;
+            }
+
+            .food-name-cell {
+                min-width: 80px;
+                width: 20%;
+            }
+
+            .carb-rate-cell {
+                min-width: 60px;
+                width: 15%;
+            }
+
+            .gi-cell {
+                min-width: 50px;
+                width: 12%;
             }
 
             .description-cell {
-                max-width: 200px;
+                min-width: 120px;
+                width: 38%;
+                max-width: none;
+                white-space: normal;
+                line-height: 1.3;
+            }
+
+            /* 表格容器添加滚动提示 */
+            .content {
+                padding: 20px 15px;
+            }
+
+            .nutrition-container::before {
+                content: "← 左右滑动查看更多内容 →";
+                display: block;
+                text-align: center;
+                color: #64748b;
+                font-size: 12px;
+                margin-bottom: 10px;
+                padding: 8px;
+                background: #f8fafc;
+                border-radius: 4px;
+                border: 1px solid #e2e8f0;
             }
 
             .info-grid {
@@ -632,27 +925,37 @@
             .results-grid {
                 grid-template-columns: 1fr;
             }
+
+            .copyright {
+                margin-top: 10px;
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="main-wrapper">
+        <div class="container">
         <div class="nav-bar">
+            <button class="nav-dropdown-toggle" onclick="toggleMobileNav()">热量计算器</button>
             <ul class="nav-tabs">
                 <li class="nav-tab">
-                    <button class="nav-btn active" data-page="nutrition">营养成分表</button>
+                    <button class="nav-btn active" data-page="calorie">热量计算器</button>
                 </li>
                 <li class="nav-tab">
                     <button class="nav-btn" data-page="calculator">三餐摄入计算</button>
                 </li>
                 <li class="nav-tab">
-                    <button class="nav-btn" data-page="calorie">热量计算器</button>
+                    <button class="nav-btn" data-page="nutrition">营养成分表</button>
+                </li>
+                <li class="nav-tab">
+                    <button class="nav-btn" data-page="qa">Q&A答疑</button>
                 </li>
             </ul>
         </div>
 
         <!-- 营养成分表页面 -->
-        <div class="page-content active" id="nutrition-page">
+        <div class="page-content" id="nutrition-page">
             <div class="header">
                 <h1>NutriFlow</h1>
                 <p>智能营养助手 - 营养成分表</p>
@@ -835,8 +1138,34 @@
             </div>
         </div>
 
+        <!-- Q&A答疑页面 -->
+        <div class="page-content" id="qa-page">
+            <div class="header">
+                <h1>NutriFlow</h1>
+                <p>智能营养助手 - Q&A答疑</p>
+            </div>
+            
+            <div class="qa-page">
+                <div class="qa-type-selector">
+                    <h3 style="margin-bottom: 20px; color: #1e293b;">选择问答类型</h3>
+                    <div class="qa-type-buttons">
+                        <button class="qa-type-btn active" data-type="cut">减脂Q&A</button>
+                        <button class="qa-type-btn" data-type="bulk">增肌Q&A</button>
+                    </div>
+                </div>
+
+                <div class="qa-section active" id="cut-qa">
+                    <!-- 减脂Q&A内容将在这里动态生成 -->
+                </div>
+
+                <div class="qa-section" id="bulk-qa">
+                    <!-- 增肌Q&A内容将在这里动态生成 -->
+                </div>
+            </div>
+        </div>
+
         <!-- 热量计算器页面 -->
-        <div class="page-content" id="calorie-page">
+        <div class="page-content active" id="calorie-page">
             <div class="header">
                 <h1>NutriFlow</h1>
                 <p>智能营养助手 - 热量计算器</p>
@@ -914,6 +1243,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 NutriFlow - 智能营养助手. All rights reserved.</p>
+        <p>数据来源于科学营养研究，仅供参考，请根据个人情况合理调整</p>
     </div>
 
     <script>
@@ -1034,12 +1368,183 @@
             snack: { foods: [], targetCarbs: 0, targetProtein: 0 }
         };
 
+        // 减脂Q&A数据
+        let cutQAData = [
+            { question: "执行了2周但体重不掉该怎么调整？", answer: `表格设计的热量缺口已比较大了，如果体重2周不掉，首先要怀疑的不是表格设计的问题，而是表格执行的问题。常见的不能执行表格的原因：
+
+①饮食初期不定量。出于各种原因（偷懒/不重视/觉得丢面子/在外就餐不方便等），初期对食物不定量，而是以"吃到八分饱"、"荤素搭配"、"正常吃"之类的模糊标准去配餐。
+
+②用薄荷等饮食app错误记录食物。强烈建议不要自己用薄荷等饮食app去计算，内置数据有大量是错的。
+
+③脂肪摄入过量。要么不时吃高脂肉，要么是不时吃糖油混合物。
+
+④方案里要做有氧但实际少做没做。
+
+⑤常吃水果但不置换主食。
+
+确认不存在上述问题后，才考虑是热量缺口不足的问题，办法是：a.要么每天比原食谱少吃200大卡 b.要么每周多做1000大卡有氧。` },
+            { question: "减脂到多少体重就应该停止了？", answer: `建议男性BMI22-23、女性BMI20-21就停止减脂（BMI=体重kg÷身高m÷身高m）。
+
+肌肉量一般的普通人，切勿追求低体脂（腹肌、马甲线、肚子无赘肉）。腰腹是人体脂肪层天然最厚的地方，如果你把这些部位的脂肪层清除了，但此时你上下肢其他部位就更没脂肪了。问题是，你的皮肤之下又没有足够肌肉量支撑，脂肪层没了后就成了类似皮包骨的身材。
+
+大家在网上看到的低体脂好身材，不是单纯的低体脂，而是低体脂+高肌肉，才能呈现的视觉效果。` },
+            { question: "为什么新手初期要定量饮食？", answer: `因为新手对日常食物的碳蛋脂量没有概念，按感觉吃饭大概率会导致碳蛋脂的总量严重错误。如果按感觉吃饭能八九不离十，那大家也不会有减肥问题了。我已经帮你把食物重量算好，食物品种也覆盖了日常大部分食物，你要做的唯一事情就是买个食物称，在初期（用几天到一周的时间）做定量饮食。建立饮食习惯后就不需要定量饮食了。` },
+            { question: "难道要一直称重吃饭？食物是生重还是熟重？", answer: `不要理解成一直天天顿顿用食物称来称重，而是初期把你经常性食物测一下就行了：
+
+①碳水很好定量，米饭/馒头等主食的重量是大体固定的；
+②蛋白质的定量，早饭鸡蛋牛奶按数量论很简单，午饭晚饭瘦肉需要称重几次培养对瘦肉体积的认识；
+③脂肪则不用定量，就用表格里的脂肪摄入推荐模式。
+
+生熟问题：米饭、面条的生熟重量差别很大，所以表格里生熟重量都写了，一定要分清。` },
+            { question: "是否有一些固定重量的食物？", answer: `大部分食物不是全国统一重量的，仍需自己定量，比较固定重量的食物只有以下这些：
+
+【外卖米饭（长方形盒）】碳水100g/盒
+【吐司切片面包】碳水25g/片
+【鸡翅根（去皮）】蛋白质8g/个
+【小鸡腿（去皮）】蛋白质15g/个
+【全鸡腿（去皮）】蛋白质40g/个
+【苹果/橙子/香蕉】碳水20-30g/个` },
+            { question: "表格里哪些食物如果不定量会被严重错估？", answer: `【面条/米线/卷饼】容易被低估碳水量。这些是饱腹感最低的主食，减脂一般不作为常规主食，一份的碳水量高达80-160g。
+
+【菜肴的瘦肉量】容易被高估蛋白质。食堂外卖餐馆的一人份瘦肉菜肴，瘦肉量一般很难超过100g（蛋白质25g）。
+
+【个别特殊菜肴】容易被低估脂肪量。需要回避：炒鸡蛋、炒茄子、油炸菜等。` },
+            { question: "哪些食物需要特别提醒？", answer: `【瘦肉】减脂期的肉类要严格确保是瘦肉，瘦肉的脂肪率一般低于5%。
+
+【高脂肉】鸡鸭皮、大排、糖醋里脊、锅包肉、鸡翅、猪蹄等。这些都不是瘦肉，脂肪率一般都不低于10%，不能作为减脂期的日常食物。
+
+【面条/米线/卷饼】减脂一般不作为常规主食，一份的碳水量高达80-160g。
+
+【煎蛋炒蛋】一个煎蛋是6g蛋白质，因为巨量吸油，脂肪量至少20g。
+
+【糖油混合物】饼干、蛋糕、点心、糕点、甜品、油条、煎饼、花式面包、膨化食品等。` },
+            { question: "吃食堂或工作餐该怎么办？", answer: `吃食堂或工作餐本身没问题，关键是看你在具体吃什么。
+
+【务必要分清楚食物性质】最重要的是排除高脂肉和糖油混合物，否则你的脂肪摄入必爆，减脂增肌都不能这么吃！
+
+【初期做做碳水和蛋白质定量】第二步才是表格里的碳水和蛋白质的定量，不是天天顿顿称，而是初期把你经常性食物测一下就行了。
+
+【关于菜肴里的油】一般的带油烧菜不用害怕，但夹起来会直接淌油的重油菜肴，要把菜肴在盘边刮一刮，让附着的油量少一些。` },
+            { question: "吃外卖该怎么办？", answer: `【正确的外卖】用主食+瘦肉模式的外卖是最简单的，例如黄焖鸡、海南鸡、酸菜鱼、跷脚牛肉、鸡腿饭、瘦肉炒菜配米饭等。外卖米饭，长方形饭盒大约是100g碳水/盒。
+
+【错误的外卖】①缺乏瘦肉的外卖，比如面条、米线、盖饭；②混合餐外卖，比如轻食、健康餐；③高脂肉外卖：肉类只能吃瘦肉，高脂肉必须能识别和回避。` },
+            { question: "在外就餐怎么办？", answer: `在外就餐不影响减脂。在外就餐桌上摆的还是碳蛋脂，只是无法定量而已，影响不大。碳水量参考你既往的主食量来吃即可，瘦肉量可以比较随意，蔬菜随意。
+
+特别需要注意的就是少吃不吃【高脂肉】和【糖油混合物】。减脂饮食在任何场合都少吃不吃高脂肉和糖油混合物，最多就是浅尝解馋而已，这样脂肪摄入才不会爆炸。` },
+            { question: "减脂期需要吃放纵餐吗？", answer: `我们的饮食方案，每餐都是主食（量还行）+你喜欢的瘦肉菜、蔬菜，排除的食物就只有糖油混合物和高脂肉而已，所以就不痛苦，在如此宽松的饮食里，也不需要定期去"放纵"来"缓解痛苦"。
+
+不过，如果你的饮食习惯是，不吃高脂肉，不吃糖油混合物，就会陷入痛苦，那你确实可以定期去"放纵"吃这些，但因为热量确实高，不可避免会影响减脂，这件事就自己取舍了。` },
+            { question: "为什么喝酒对减脂的破坏很大？", answer: `①酒的热量来自酒精，非常高！
+1两白酒（50g）热量：50g重量×50%酒精率×7大卡/g=175大卡=44g碳水
+1瓶啤酒（600g）热量：600g重量×（4%碳水率×4大卡/g+3%酒精率×7大卡/g）=222大卡=56g碳水
+简单数据：1两白酒=1瓶啤酒=200大卡=50g碳水的热量
+
+②必须被迫喝酒该怎么办？
+先试算出自己每周的酒精热量，再用增加等量的有氧量去对冲。例如，每周需要喝白酒5两，当周就额外做有氧：5两×200大卡=1000大卡。` },
+            { question: "减脂期间感觉饿怎么办？", answer: `①最重要的是选择高饱腹感主食：米饭、燕麦麸、燕麦片、土豆、红薯、玉米。
+
+②多吃蔬菜。蔬菜能抗饿，除了力量训练的练后餐，其他任何各餐都是多吃、先吃蔬菜。
+
+③吃够瘦肉。各餐蛋白质配额都给得较高，请把瘦肉吃足。
+
+④用零食夜宵的配额来垫肚子。
+
+⑤增加一定有氧来换取碳水。` },
+            { question: "为什么减脂是体重越大越不需要有氧？", answer: `体重决定基础代谢，基础代谢又是人体最主要的热量消耗。因此，体重越大，基础代谢就越高，热量消耗就越高，减脂期能吃的饮食热量就越高。
+
+体重>80kg者，基础代谢足够高，只靠饮食提供热量缺口，排除了低饱腹感高热量的食物，吃起来都不会饿的，所以不需要加有氧。
+
+体重70-80kg者，多数人吃起来也不太饿，因此不需要加有氧，但也有部分人会觉得饿，则应该考虑加有氧。
+
+体重<70kg者，基础代谢比较低，多数人也会有些饥饿感，因此默认建议每周做2小时有氧。` },
+            { question: "为什么体脂称/体测仪的体脂和肌肉数据是不可信的？", answer: `生物抗阻抗法的体脂称/体测仪的数据只有体重有用，骨骼肌、体脂肪数据都不要当真。基础代谢也不是"测"出来的，而是根据你的体重代入内置的公式计算的。
+
+如果肌肉脂肪的变化量很小（比如几天几周的变化），体测仪的精度测不出来。如果确实非常关心自己的脂肪和肌肉量，可以去医院用"双能X射线吸收法"（DEXA）测身体成分。` },
+            { question: "为什么两三天的体重变化没有意义？", answer: `影响每日体重变化的因素：①未排出的食糜。食物消化排出需要1-4天；②人体脱水吸水。较低的盐分摄入能导致人体脱水掉体重，较高的盐分摄入能导致人体吸水长体重；③脂肪的分解合成。这是大家关心的，但非常微弱。
+
+既然即便在正确减脂，每天的脂肪分解量也只占体重波动的百分之几而已，所以根本不可能通过每天的体重变化来判断脂肪量变化的。必须持续积累，用1-2周的变化来对比。` },
+            { question: "有什么低热量能短暂填肚子的零食？", answer: `①蛋白质类：
+低糖鸡肉干、内蒙牛肉干、柏香去皮熟鸡腿、泰森鸡胸肉条、无穷盐焗鸡腿
+
+②本身热量很低：
+卫龙海带丝/魔芋爽、各种魔芋类零食商品、各种蔬菜
+
+③本身热量不低但能吃的量很少：
+有友泡椒凤爪、黑巧克力（80%以上黑巧浓度）
+
+④无热量饮料：
+纯水乐苏打气泡水、无糖气泡饮料` }
+        ];
+
+        // 增肌Q&A数据
+        let bulkQAData = [
+            { question: "执行了一个月但体重不长该怎么调整？", answer: `增肌期体重的建议增速，男性每月体重增加1-2斤，女性每月体重增加0.5-1斤。
+
+为什么要求增速这么慢？因为肌肉合成速度比脂肪分解速度要慢得多，平均每天能合成10g肌肉已经很高效了，每月的肌肉增量最多也就300g，如果体重增加数倍于此，则多出的都是脂肪。
+
+如果增肌体重一个月都毫无变化，那就是确实处于热量平衡状态，还得加热量。加热量的办法：每天增加碳水30-60g（约为米饭100-200g），或者增加脂肪10-20g。` },
+            { question: "为什么要新手初期要定量饮食？", answer: `因为新手对日常食物的碳蛋脂量没有概念，按感觉吃饭大概率会导致碳蛋脂的总量严重错误。如果按感觉吃饭能八九不离十，那大家也不会有增肌体重不长，或者增长过快长成胖子的问题了。
+
+当然，增肌饮食的精确度要求比减脂更低，因为增肌期的热量摄入要高得多，对因为定量错误、食物错误导致的饮食热量错误的容错能力更高，所以增肌饮食不用过于精细和紧张。` },
+            { question: "难道要一直称重吃饭？食物是生重还是熟重？", answer: `不要理解成一直天天顿顿用食物称来称重，而是初期把你经常性食物测一下就行了：
+
+①碳水很好定量，米饭/馒头等主食的重量是大体固定的；
+②蛋白质的定量，早饭鸡蛋牛奶按数量论很简单，午饭晚饭瘦肉需要称重几次培养对瘦肉体积的认识；
+③脂肪则不用定量，就用表格里的脂肪摄入推荐模式。
+
+生熟问题：米饭、面条的生熟重量差别很大，所以表格里生熟重量都写了，一定要分清。` },
+            { question: "是否有一些固定重量的食物？", answer: `【外卖米饭（长方形盒）】碳水100g/盒
+【外卖米饭（圆形扁盒）】碳水75g/盒
+【吐司切片面包】碳水25g/片
+【鸡翅根（去皮）】蛋白质8g/个
+【小鸡腿（去皮）】蛋白质15g/个
+【全鸡腿（去皮）】蛋白质40g/个
+【苹果/橙子/香蕉】碳水20-30g/个` },
+            { question: "表格里哪些食物如果不定量会被严重错估？", answer: `【面条/米线/卷饼】容易被低估碳水量。这些是饱腹感最低的主食，一份的碳水量高达80-160g，增肌也只有碳水量最大的练后餐会考虑作为主食。
+
+【菜肴的瘦肉量】容易被高估蛋白质。食堂外卖餐馆的一人份瘦肉菜肴，瘦肉量一般很难超过100g（蛋白质25g）。
+
+【个别特殊菜肴】容易被低估脂肪量。需要回避：炒鸡蛋、炒茄子、油炸菜等。` },
+            { question: "哪些食物是需要特别提醒的？", answer: `【糖油混合物】面粉+油制作的食物，如饼干、蛋糕、点心等。
+
+【高脂肉】瘦肉之外的肉类，如鸡皮鸭皮、猪大排、糖醋里脊等，脂肪率高得多而蛋白质率又低得多。
+
+【瘦肉】表格里是肉是指瘦肉，瘦肉的脂肪率一般低于5%。
+
+【面条/米线/卷饼】这些是饱腹感最低的主食，增肌也只有碳水量最大的练后餐会考虑作为主食。` },
+            { question: "增肌到什么程度应该转减脂？", answer: `停止增肌的标准主要取决于个人审美。BMI=体重kg÷身高m÷身高m，如果介意发胖，男性23<BMI<24，女性21<BMI<22就可以考虑减脂；如果不介意发胖，可以继续增到男性24<BMI<25，女性22<BMI<23再考虑减脂。` },
+            { question: "为什么体脂称/体测仪的体脂和肌肉数据是不可信的？", answer: `生物抗阻抗法的体脂称/体测仪的数据只有体重有用，骨骼肌、体脂肪数据都不要当真。基础代谢也不是"测"出来的，而是根据你的体重代入内置的公式计算的。
+
+如果肌肉脂肪的变化量很小（比如几天几周的变化），体测仪的精度测不出来。如果确实非常关心自己的脂肪和肌肉量，可以去医院用"双能X射线吸收法"（DEXA）测身体成分。` },
+            { question: "吃外卖该怎么办？", answer: `【正确的外卖】单独的主食+较多的瘦肉，这样才方便定量。外卖米饭，长方形盒碳水90g/盒，圆形盒碳水75g/盒，瘦肉量自己称重定一下看够不够，如果不够，考虑加一份肉。搜索关键词：跷脚牛肉、酸菜鱼、沙县、各种带"鸡"字的。
+
+【错误的外卖】①缺乏瘦肉的外卖，比如面条、米线、盖饭；②混合餐外卖，比如轻食、健康餐；③高脂肉外卖：以高脂肉作为肉类的外卖，都不应作为日常食物。` },
+            { question: "食堂外卖的瘦肉量吃不够怎么办？", answer: `吃食堂外卖，碳水和脂肪都不会缺的，容易缺的是瘦肉，如果确实找不到瘦肉，该怎么满足蛋白质摄入呢：①自己卤或者在熟食店买一些鸡腿/酱牛肉之类的瘦肉；②电商买真空包装的速食鸡胸肉/牛肉；③蛋白粉替代，蛋白粉的蛋白质率高达约80%。
+
+但必须提醒，如果你因为吃卤肉/蛋白粉而不怎么吃大众带油炒菜的话，则属于表格里脂肪缺乏的情况，请参照表格指导来补充脂肪摄入。` },
+            { question: "在外就餐怎么办？", answer: `在外就餐不影响减脂，更不会影响增肌了。在外就餐桌上摆的还是碳蛋脂，只是无法定量而已，影响不大。碳水量参考你既往的主食量来吃即可，瘦肉量可以比较随意，蔬菜随意。
+
+特别需要注意的就是少吃不吃【高脂肉】和【糖油混合物】。当然，增肌期需要热量盈余，对"脏"食物的容纳能力肯定比减脂期强一些，有时候吃吃也无妨，但仍然不能作为基础食物。` },
+            { question: "高尿酸/痛风患者建议怎样处理饮食？", answer: `蛋白质来源里鸡蛋、牛奶、蛋白粉是没嘌呤的，肉类里猪牛羊嘌呤较低，建议：
+
+①早饭吃鸡蛋牛奶，午饭晚饭吃瘦肉优先用嘌呤较少的牛肉，少用鸡肉、海鲜；
+②如果有蛋白粉，瘦肉可以减半，另一半蛋白质用蛋白粉；
+③大量喝水，每天达到2-3L；
+④控制果糖摄入，主要来源是水果和糖饮料；
+⑤严控啤酒白酒，尽量别喝；
+⑥定期复查，严重超标就遵医嘱吃药。` },
+            { question: "为什么不要追求增肌减脂同时进行？", answer: `增肌减脂确实可以同时进行，比如一个刚开始力训的新手，即便用的是减脂饮食配额让体重下降，肌肉量仍然可能是略微增长的，但这种增肌量和用增肌饮食配额是不能比的。
+
+所以，这些"增肌减脂同时进行"的情况确实存在，但并不是大家希望的那样"增肌和减脂两头都同时最大化，用一倍的时间达成别人两倍时间的效果"。总之，该减脂就减脂，该增肌就增肌，而不用去想要"两头都要同时最大化"。` }
+        ];
+
         function initData() {
             const categories = [...new Set(nutritionData.map(item => item.category))];
             setupCategories(categories);
             renderNutritionCards();
             setupNavigation();
             populateFoodSelectors();
+            setupQAPage();
         }
 
         function setupNavigation() {
@@ -1051,8 +1556,29 @@
                     
                     navBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
+                    
+                    // 更新移动端下拉按钮文本
+                    const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+                    if (dropdownToggle) {
+                        dropdownToggle.textContent = btn.textContent;
+                    }
+                    
+                    // 在移动端点击选项后收起下拉菜单
+                    const navTabs = document.querySelector('.nav-tabs');
+                    if (navTabs) {
+                        navTabs.classList.remove('show');
+                        dropdownToggle.classList.remove('active');
+                    }
                 });
             });
+        }
+
+        function toggleMobileNav() {
+            const navTabs = document.querySelector('.nav-tabs');
+            const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+            
+            navTabs.classList.toggle('show');
+            dropdownToggle.classList.toggle('active');
         }
 
         function switchPage(page) {
@@ -1378,6 +1904,70 @@
             });
 
             document.getElementById('calorieBreakdown').innerHTML = html;
+        }
+
+        // Q&A相关函数
+        function setupQAPage() {
+            // 设置Q&A类型切换按钮
+            const qaTypeBtns = document.querySelectorAll('.qa-type-btn');
+            qaTypeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetType = btn.dataset.type;
+                    switchQAType(targetType);
+                    
+                    qaTypeBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // 初始化显示减脂Q&A
+            renderQASection('cut', cutQAData);
+            renderQASection('bulk', bulkQAData);
+        }
+
+        function switchQAType(type) {
+            const qaSections = document.querySelectorAll('.qa-section');
+            qaSections.forEach(section => section.classList.remove('active'));
+            
+            const targetSection = document.getElementById(type + '-qa');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        function renderQASection(type, qaData) {
+            const container = document.getElementById(type + '-qa');
+            let html = '';
+            
+            qaData.forEach((qa, index) => {
+                // 处理答案文本：去掉多余空行，用段落标签分隔
+                const processedAnswer = qa.answer
+                    .trim()                           // 去掉首尾空白
+                    .replace(/\n\s*\n\s*\n+/g, '\n\n') // 将多个空行替换为双换行
+                    .split('\n\n')                    // 按双换行分割段落
+                    .filter(paragraph => paragraph.trim()) // 过滤空段落
+                    .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`) // 段落内换行用<br>
+                    .join('');
+                
+                html += `
+                    <div class="qa-item" data-index="${index}">
+                        <div class="qa-question" onclick="toggleQAAnswer(this)">
+                            <span>${qa.question}</span>
+                            <span class="qa-toggle-icon">▼</span>
+                        </div>
+                        <div class="qa-answer">
+                            ${processedAnswer}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function toggleQAAnswer(element) {
+            const qaItem = element.parentElement;
+            qaItem.classList.toggle('expanded');
         }
 
         function calculateDetailedCalories() {
